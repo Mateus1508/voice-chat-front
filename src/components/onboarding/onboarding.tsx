@@ -1,23 +1,22 @@
 import {
 	FlatList,
 	View,
-	Text,
-	Image,
 	useWindowDimensions,
 	NativeScrollEvent,
 	NativeSyntheticEvent,
-	TouchableOpacity,
 } from 'react-native';
 import { onboardingItems } from '../../constants/onboardingItems';
 import React from 'react';
 import OnboardingItem from './onBoardItem';
 import { useRouter } from 'expo-router';
+import DefaultBtn from '../defaultButton';
 
 const Onboarding = () => {
 	const [currentIndex, setCurrentIndex] = React.useState<number>(0);
 	const onboardingRef = React.useRef<FlatList>(null);
 	const { width } = useWindowDimensions();
 	const router = useRouter();
+
 	const updateCurrentIndex = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
 		const contentOffsetX = e.nativeEvent.contentOffset.x;
 		const newIndex = Math.round(contentOffsetX / width);
@@ -26,7 +25,7 @@ const Onboarding = () => {
 
 	const handleNextItem = () => {
 		const nextIndex = currentIndex + 1;
-		if (nextIndex != onboardingItems.length) {
+		if (nextIndex < onboardingItems.length) {
 			const offset = nextIndex * width;
 			onboardingRef.current?.scrollToOffset({ offset });
 			setCurrentIndex(nextIndex);
@@ -39,8 +38,9 @@ const Onboarding = () => {
 		onboardingRef.current?.scrollToOffset({ offset });
 		setCurrentIndex(lastIndex);
 	};
+
 	return (
-		<View className="flex-1 justify-center items-center">
+		<View className="flex-1 justify-center items-center bg-slate-900">
 			<FlatList
 				ref={onboardingRef}
 				data={onboardingItems}
@@ -52,37 +52,32 @@ const Onboarding = () => {
 				onMomentumScrollEnd={updateCurrentIndex}
 				renderItem={({ item }) => <OnboardingItem item={item} />}
 			/>
-			<View className="gap-2 flex-row mt-10">
+			<View className="gap-2 flex-row mb-10">
 				{onboardingItems.map((_, index) => (
 					<View
 						key={index}
-						className={`h-1 w-2 bg-slate-300 ${index === currentIndex && 'bg-slate-600 w-4'}`}
+						className={`h-1 w-2 bg-slate-400 ${index === currentIndex && 'bg-slate-200 w-4'}`}
 					/>
 				))}
 			</View>
 			{currentIndex === onboardingItems.length - 1 ? (
-				<View className="w-full flex-row gap-2 p-5">
-					<TouchableOpacity
+				<View className="w-full flex-row p-5">
+					<DefaultBtn
 						onPress={() => router.replace('signUp')}
-						className="bg-slate-700 flex-1 rounded-md p-4 items-center"
-					>
-						<Text>Criar conta</Text>
-					</TouchableOpacity>
+						name="Criar conta"
+						outline
+					/>
+					<View className="w-1" />
+					<DefaultBtn
+						onPress={() => router.replace('signIn')}
+						name="Entrar"
+					/>
 				</View>
 			) : (
-				<View className="w-full flex-row gap-2 p-5">
-					<TouchableOpacity
-						onPress={handleSkip}
-						className="border flex-1 rounded-md p-4 items-center"
-					>
-						<Text>Pular</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						onPress={handleNextItem}
-						className="border flex-1 rounded-md p-4 items-center"
-					>
-						<Text>Próximo</Text>
-					</TouchableOpacity>
+				<View className="w-full flex-row p-5">
+					<DefaultBtn onPress={handleSkip} name="Pular" outline />
+					<View className="w-1" />
+					<DefaultBtn onPress={handleNextItem} name="Próximo" />
 				</View>
 			)}
 		</View>

@@ -10,7 +10,6 @@ const DrawerRoutesLayout = () => {
 				drawerContent={CustomDrawerContent}
 				screenOptions={{
 					headerTitleAlign: 'center',
-					headerStatusBarHeight: 0,
 					drawerActiveBackgroundColor: '#ffffff',
 					drawerActiveTintColor: '#011627',
 					drawerInactiveTintColor: '#ffffff',

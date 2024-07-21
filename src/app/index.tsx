@@ -1,10 +1,9 @@
-import { View } from 'react-native';
-import Onboarding from '../components/onboarding/onboarding';
-import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
+import React from 'react';
+import Onboarding from '../components/onboarding/onboarding';
 
-const Main = () => {
+const Index = () => {
 	const [isFirstLaunched, setIsFirstLaunched] = React.useState<
 		boolean | null
 	>(null);
@@ -16,16 +15,11 @@ const Main = () => {
 				setIsFirstLaunched(true);
 				AsyncStorage.setItem('isFirstLaunched', 'false');
 			} else {
-				setIsFirstLaunched(false);
-				router.replace('/signUp');
+				setIsFirstLaunched(false); //router.replace('/signIn');
 			}
 		});
 	}, []);
-	return (
-		<View className="flex h-full w-full justify-center items-center">
-			{isFirstLaunched && <Onboarding />}
-		</View>
-	);
+	return <Onboarding />;
 };
 
-export default Main;
+export default Index;

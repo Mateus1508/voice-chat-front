@@ -1,13 +1,5 @@
-import {
-	View,
-	Image,
-	Text,
-	useWindowDimensions,
-	TouchableOpacity,
-} from 'react-native';
-import { onboardingItems } from '../../constants/onboardingItems';
+import { View, Image, Text, useWindowDimensions } from 'react-native';
 import { OnboardingItemsInteface } from '../../interfaces/onboardingItemsInterface';
-import { useRouter } from 'expo-router';
 
 interface Props {
 	item: OnboardingItemsInteface;
@@ -26,8 +18,8 @@ const OnboardingItem = ({ item }: Props) => {
 				alt={item.title}
 				style={{ width: width * 0.8, height: width * 0.8 }}
 			/>
-			<Text className="font-bold text-3xl">{item.title}</Text>
-			<Text className="text-md">{item.description}</Text>
+			<Text className="font-bold text-3xl text-white">{item.title}</Text>
+			<Text className="text-md text-white">{item.description}</Text>
 		</View>
 	);
 };
