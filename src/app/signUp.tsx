@@ -42,6 +42,7 @@ const SignUp = () => {
 						<IconButton
 							name="Crie com o Google"
 							fullWidth
+							border
 							icon={
 								<FontAwesome
 									name="google"

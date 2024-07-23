@@ -3,6 +3,7 @@ import { Drawer } from 'expo-router/drawer';
 import CustomDrawerContent from '../../components/customDrawerContent';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Entypo } from '@expo/vector-icons';
+import Header from '../../components/header';
 const DrawerRoutesLayout = () => {
 	return (
 		<GestureHandlerRootView className="flex-1">
@@ -13,6 +14,8 @@ const DrawerRoutesLayout = () => {
 					drawerActiveBackgroundColor: '#ffffff',
 					drawerActiveTintColor: '#011627',
 					drawerInactiveTintColor: '#ffffff',
+					drawerPosition: 'right',
+					header: () => <Header />,
 					drawerStyle: {
 						flex: 1,
 						height: '100%',

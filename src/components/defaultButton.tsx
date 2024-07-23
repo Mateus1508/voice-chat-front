@@ -8,7 +8,7 @@ interface Props extends TouchableOpacityProps {
 const DefaultBtn = (props: Props) => {
 	return (
 		<TouchableOpacity
-			onPress={props.onPress}
+			{...props}
 			className={`${props.outline ? 'border-slate-300' : 'bg-slate-300'} flex-grow border rounded-md p-3 items-center`}
 			disabled={props.disabled}
 		>

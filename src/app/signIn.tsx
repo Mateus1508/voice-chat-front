@@ -1,12 +1,5 @@
 import { useRouter } from 'expo-router';
-import {
-	KeyboardAvoidingView,
-	Platform,
-	Text,
-	View,
-	Image,
-	TouchableOpacity,
-} from 'react-native';
+import { KeyboardAvoidingView, Platform, Text, View } from 'react-native';
 import DefaultBtn from '../components/defaultButton';
 import DefaultInput from '../components/defaultInput';
 import { FontAwesome } from '@expo/vector-icons';
@@ -47,6 +40,7 @@ const SignIn = () => {
 						<IconButton
 							name="Entre com o Google"
 							fullWidth
+							border
 							icon={
 								<FontAwesome
 									name="google"

@@ -15,11 +15,12 @@ const Index = () => {
 				setIsFirstLaunched(true);
 				AsyncStorage.setItem('isFirstLaunched', 'false');
 			} else {
-				setIsFirstLaunched(false); //router.replace('/signIn');
+				setIsFirstLaunched(false);
+				router.replace('/signIn');
 			}
 		});
 	}, []);
-	return <Onboarding />;
+	return <>{isFirstLaunched && <Onboarding />}</>;
 };
 
 export default Index;
